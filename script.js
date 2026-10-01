@@ -53,17 +53,26 @@ function selectSize(size) {
 
 // ===== Commande WhatsApp =====
 function submitToWhatsApp() {
-  const name = $('input-name').value.trim();
-  const phone = $('input-phone').value.trim();
-  const place = $('input-location').value.trim();
-  const size = $('selected-size').value;
-  const err = $('form-error');
+  const name = document.getElementById('input-name').value.trim();
+  const phone = document.getElementById('input-phone').value.trim();
+  const place = document.getElementById('input-location').value.trim();
+  const size = document.getElementById('selected-size').value;
+  const err = document.getElementById('form-error');
 
-  if (!name || phone.replace(/\D/g, '').length < 9 || !place || !size) { err.classList.remove('hidden'); return; }
-  err.classList.add('hidden');
+  if (!name || phone.replace(/\D/g, '').length < 9 || !place || !size) { 
+      if (err) err.classList.remove('hidden'); 
+      return; 
+  }
+  
+  if (err) err.classList.add('hidden');
 
   const msg = `Bonjour IMUSA,\n\nJe souhaite commander :\n\n- Produit : ${PRODUCT.name}\n- Prix : ${PRODUCT.price}\n- Taille : ${size}\n- Nom & Prénom : ${name}\n- Téléphone : ${phone}\n- Localisation / Adresse : ${place}\n\nMerci de confirmer ma commande.`;
-  const url = `https://wa.me/${waNumber(WHATSAPP_NUMBER)}?text=${encodeURIComponent(msg)}`;
-  $('cart-count').textContent = '1';
-  if (!window.open(url, '_blank')) window.location.href = url;   // si le popup est bloqué
+  
+  const cleanNumber = WHATSAPP_NUMBER.replace(/\D/g, '');
+  const url = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(msg)}`;
+  
+  const cartCount = document.getElementById('cart-count');
+  if (cartCount) cartCount.textContent = '1';
+
+  window.location.href = url;
 }
