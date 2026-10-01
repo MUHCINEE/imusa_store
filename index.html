@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMUSA Denim Jorts — SSENSE Editorial Store</title>
+    <title>IMUSA Denim Jorts — Boutique officielle</title>
     <!-- Tailwind CSS v4 CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts for Playfair Display (Serif) and Inter (Sans) -->
@@ -37,26 +37,7 @@
             }
         }
     </script>
-    <style>
-        body {
-            background-color: #f4f4f4;
-            color: #000000;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            border-radius: 0px !important;
-        }
-        * {
-            border-radius: 0px !important;
-        }
-        .serif-display {
-            font-family: 'Playfair Display', serif;
-            letter-spacing: -0.04em;
-        }
-        .hairline-border {
-            border-color: #979797;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#f4f4f4] text-[#000000] antialiased selection:bg-black selection:text-white">
 
@@ -73,9 +54,8 @@
         <div class="max-w-[1440px] mx-auto px-6 h-[55px] flex items-center justify-between">
             <!-- Left category links -->
             <nav class="hidden md:flex items-center space-x-6 text-[11px] uppercase tracking-normal font-normal text-[#000000]">
-                <a href="#editorial" class="hover:text-[#888888] transition-colors">Hommeswear</a>
-                <a href="#catalog" class="hover:text-[#888888] transition-colors">Womenswear</a>
-                <a href="#details" class="hover:text-[#888888] transition-colors">Tout le reste</a>
+                <a href="#editorial" class="hover:text-[#888888] transition-colors">Collection</a>
+                <a href="#catalog" class="hover:text-[#888888] transition-colors">Galerie</a>
                 <a href="#order-section" class="hover:text-[#888888] transition-colors">Commander</a>
             </nav>
 
@@ -84,7 +64,7 @@
 
             <!-- Centered Logo -->
             <div class="absolute left-1/2 transform -translate-x-1/2 text-center">
-                <a href="#" class="serif-display text-[20px] font-normal tracking-[-0.03em] uppercase text-[#000000]">IMUSA</a>
+                <a href="#" aria-label="IMUSA"><img src="logos/logo.jpg" alt="IMUSA" class="h-[22px] w-auto mix-blend-multiply"></a>
             </div>
 
             <!-- Right utility links -->
@@ -96,9 +76,8 @@
 
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden bg-[#ffffff] border-b hairline-border px-6 py-4 flex flex-col space-y-3 text-[11px] uppercase">
-            <a href="#editorial" onclick="toggleMobileMenu()">Hommeswear</a>
-            <a href="#catalog" onclick="toggleMobileMenu()">Womenswear</a>
-            <a href="#details" onclick="toggleMobileMenu()">Tout le reste</a>
+            <a href="#editorial" onclick="toggleMobileMenu()">Collection</a>
+            <a href="#catalog" onclick="toggleMobileMenu()">Galerie</a>
             <a href="#order-section" onclick="toggleMobileMenu()">Commander</a>
         </div>
     </header>
@@ -123,9 +102,39 @@
             </div>
 
             <!-- Right Column: Full-bleed editorial photograph -->
-            <div class="w-full h-[500px] md:h-[650px] overflow-hidden bg-[#e8e8e8]">
-                <img src="imgs/model3.jpg" onerror="this.src='https://placehold.co/800x1000/e8e8e8/333333?text=IMUSA+Editorial+Model';" alt="IMUSA Denim Jorts Editorial" class="w-full h-full object-cover">
+        <div class="relative w-full h-[480px] lg:h-[640px] bg-[#e8e8e8] overflow-hidden group" id="product-slider">
+            <!-- Image Container -->
+            <div class="flex transition-transform duration-700 ease-in-out h-full" id="slider-track">
+                <div class="w-full h-full flex-shrink-0">
+                    <img src="imgs/model3.jpg" onerror="this.src='https://placehold.co/600x700/e8e8e8/333333?text=IMUSA+Jorts+Front';" alt="IMUSA Jorts" class="w-full h-full object-cover object-top">
+                </div>
+                <div class="w-full h-full flex-shrink-0">
+                    <img src="imgs/model2.jpg" onerror="this.src='https://placehold.co/600x700/e8e8e8/333333?text=IMUSA+Jorts+Back';" alt="IMUSA Jorts" class="w-full h-full object-cover object-top">
+                </div>
+                <div class="w-full h-full flex-shrink-0">
+                    <img src="imgs/model1.jpg" onerror="this.src='https://placehold.co/600x700/e8e8e8/333333?text=IMUSA+Jorts+Left';" alt="IMUSA Jorts" class="w-full h-full object-cover object-top">
+                </div>
+                <div class="w-full h-full flex-shrink-0">
+                    <img src="imgs/model4.jpg" alt="IMUSA Jorts Lifestyle" class="w-full h-full object-cover object-top">
+                </div>
             </div>
+
+            <!-- Navigation Buttons (Visible on Hover) -->
+            <button onclick="prevSlide()" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-black hover:text-white text-black flex items-center justify-center transition-colors opacity-100 md:opacity-0 md:group-hover:opacity-100 cursor-pointer">
+                ‹
+            </button>
+            <button onclick="nextSlide()" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-black hover:text-white text-black flex items-center justify-center transition-colors opacity-100 md:opacity-0 md:group-hover:opacity-100 cursor-pointer">
+                ›
+            </button>
+
+            <!-- Dots Indicator -->
+            <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+                <span onclick="goToSlide(0)" class="w-2 h-2 rounded-full bg-white/50 cursor-pointer transition-all indicator-dot active" data-index="0"></span>
+                <span onclick="goToSlide(1)" class="w-2 h-2 rounded-full bg-white/50 cursor-pointer transition-all indicator-dot" data-index="1"></span>
+                <span onclick="goToSlide(2)" class="w-2 h-2 rounded-full bg-white/50 cursor-pointer transition-all indicator-dot" data-index="2"></span>
+                <span onclick="goToSlide(3)" class="w-2 h-2 bg-white/50 cursor-pointer transition-all indicator-dot" data-index="3"></span>
+            </div>
+        </div>
         </div>
     </section>
 
@@ -140,36 +149,33 @@
             <!-- Card 1 -->
             <div class="bg-[#ffffff] p-5 flex flex-col justify-between border hairline-border">
                 <div class="w-full h-[400px] bg-[#e8e8e8] overflow-hidden mb-4">
-                    <img src="produit.jpg" onerror="this.src='https://placehold.co/600x700/e8e8e8/333333?text=IMUSA+Jorts+Front';" alt="IMUSA Jorts Face" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    <img src="imgs/produit.PNG" onerror="this.src='https://placehold.co/600x700/e8e8e8/333333?text=IMUSA+Jorts+Front';" alt="IMUSA Jorts Face" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                 </div>
                 <div>
                     <div class="text-[11px] font-bold uppercase mb-1">PRODUIT OFFICIEL</div>
                     <div class="text-[16px] font-normal mb-1">Vue de Face & Finitions</div>
-                    <div class="text-[11px] text-[#888888]">100% Coton • Denim Premium • 215 DH</div>
                 </div>
             </div>
 
             <!-- Card 2 -->
             <div class="bg-[#ffffff] p-5 flex flex-col justify-between border hairline-border">
                 <div class="w-full h-[400px] bg-[#e8e8e8] overflow-hidden mb-4">
-                    <img src="watermarked_img_12331840010491111954.jpg" onerror="this.src='https://placehold.co/600x700/e8e8e8/333333?text=IMUSA+Grid+View';" alt="IMUSA Grid Perspective" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    <img src="imgs/produit_back.PNG" onerror="this.src='https://placehold.co/600x700/e8e8e8/333333?text=IMUSA+Grid+View';" alt="IMUSA Grid Perspective" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                 </div>
                 <div>
                     <div class="text-[11px] font-bold uppercase mb-1">PERSPECTIVE 360°</div>
                     <div class="text-[16px] font-normal mb-1">Angles Multiples & Détails Boutons</div>
-                    <div class="text-[11px] text-[#888888]">Coupe Relaxed Fit • Unisexe • 215 DH</div>
                 </div>
             </div>
 
             <!-- Card 3 -->
             <div class="bg-[#ffffff] p-5 flex flex-col justify-between border hairline-border">
                 <div class="w-full h-[400px] bg-[#e8e8e8] overflow-hidden mb-4">
-                    <img src="watermarked_img_5068852669678247892.jpg" onerror="this.src='https://placehold.co/600x700/e8e8e8/333333?text=IMUSA+Lifestyle';" alt="IMUSA Lifestyle" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    <img src="imgs/produit_left.PNG" onerror="this.src='https://placehold.co/600x700/e8e8e8/333333?text=IMUSA+Lifestyle';" alt="IMUSA Lifestyle" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                 </div>
                 <div>
                     <div class="text-[11px] font-bold uppercase mb-1">STYLING EDITORIAL</div>
                     <div class="text-[16px] font-normal mb-1">En Porté & Ambiance Urbaine</div>
-                    <div class="text-[11px] text-[#888888]">Inspiration Lookbook • 215 DH</div>
                 </div>
             </div>
         </div>
@@ -180,17 +186,11 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <!-- Product Information & Specifications -->
             <div class="flex flex-col space-y-6">
-                <div class="text-[11px] font-bold uppercase tracking-normal text-[#888888]">NOUVELLE COLLECTION • SSENSE EXCLUSIVE</div>
+                <div class="text-[11px] font-bold uppercase tracking-normal text-[#888888]">NOUVELLE COLLECTION</div>
                 <h2 class="serif-display text-[38px] text-[#333333] font-normal tracking-[-0.03em]">IMUSA Denim Jorts</h2>
                 <div class="text-[24px] font-normal text-[#000000]">215 DH</div>
 
-                <div class="flex items-center space-x-2 text-[12px] text-[#333333]">
-                    <div class="flex text-black">
-                        ★★★★★
-                    </div>
-                    <span class="font-bold">4.9 / 5.0</span>
-                    <span class="text-[#888888]">(128 Avis clients vérifiés)</span>
-                </div>
+                
 
                 <p class="font-light text-[14px] leading-[1.6] text-[#333333]">
                     Le short en denim signature IMUSA. Confectionné à partir de coton brut de haute qualité, il présente une coupe ample (relaxed fit) inspirée des archives streetwear des années 90. Coutures renforcées, finitions effilochées discrètes sur le bas et boutons gravés personnalisés.
@@ -211,14 +211,7 @@
                     </div>
                 </div>
 
-                <!-- Customer Testimonials / Reviews Snippet -->
-                <div class="bg-[#f4f4f4] p-5 space-y-3">
-                    <div class="text-[11px] font-bold uppercase">Avis Client Récent</div>
-                    <p class="text-[13px] italic font-serif text-[#333333]">
-                        "La qualité du denim est exceptionnelle, la coupe tombe parfaitement comme sur les photos du lookbook. Livraison rapide."
-                    </p>
-                    <div class="text-[11px] text-[#888888]">— Mehdi B., Casablanca (Taille 42)</div>
-                </div>
+                
             </div>
 
             <!-- Interactive Order Form -->
@@ -286,7 +279,7 @@
     <footer class="bg-[#ffffff] border-t hairline-border py-12">
         <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 text-[11px]">
             <div>
-                <div class="serif-display text-[18px] uppercase font-normal mb-3">IMUSA / SSENSE</div>
+                <div class="serif-display text-[18px] uppercase font-normal mb-3">IMUSA</div>
                 <p class="text-[#888888] leading-relaxed">
                     Galerie digitale et éditeur de mode indépendante. Restraint, monochrome et brut.
                 </p>
@@ -317,7 +310,7 @@
             </div>
         </div>
         <div class="max-w-[1440px] mx-auto px-6 mt-12 pt-6 border-t hairline-border flex flex-col md:flex-row justify-between text-[11px] text-[#888888]">
-            <div>© 2026 IMUSA & SSENSE STYLE REFERENCE. Tous droits réservés.</div>
+            <div>© 2026 IMUSA. Tous droits réservés.</div>
             <div class="flex space-x-4 mt-2 md:mt-0">
                 <span>Langue: Français</span>
                 <span>Devise: DH (MAD)</span>
@@ -325,70 +318,6 @@
         </div>
     </footer>
 
-    <script>
-        // Close banner function
-        function closeBanner() {
-            const banner = document.getElementById('promo-banner');
-            banner.style.display = 'none';
-        }
-
-        // Toggle mobile menu
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-            } else {
-                menu.classList.add('hidden');
-            }
-        }
-
-        // Size selector logic
-        function selectSize(size) {
-            document.getElementById('selected-size').value = size;
-            const buttons = document.querySelectorAll('.size-btn');
-            buttons.forEach(btn => {
-                if (btn.innerText === size) {
-                    btn.classList.add('bg-black', 'text-white');
-                } else {
-                    btn.classList.remove('bg-black', 'text-white');
-                }
-            });
-        }
-
-        // WhatsApp Order Submission
-        function submitToWhatsApp() {
-            const name = document.getElementById('input-name').value.trim();
-            const phone = document.getElementById('input-phone').value.trim();
-            const location = document.getElementById('input-location').value.trim();
-            const size = document.getElementById('selected-size').value;
-            const errorDiv = document.getElementById('form-error');
-
-            if (!name || !phone || !location || !size) {
-                errorDiv.classList.remove('hidden');
-                return;
-            } else {
-                errorDiv.classList.add('hidden');
-            }
-
-            // Construct WhatsApp Message in French as requested
-            const productName = "IMUSA Denim Jorts";
-            const productPrice = "215 DH";
-            
-            const message = `Bonjour IMUSA / SSENSE,\n\nJe souhaite commander :\n\n- Produit : ${productName}\n- Prix : ${productPrice}\n- Taille : ${size}\n- Nom & Prénom : ${name}\n- Téléphone : ${phone}\n- Localisation / Adresse : ${location}\n\nMerci de confirmer ma commande.`;
-
-            // Replace with target WhatsApp number (e.g. +212600000000 or user whatsapp)
-            const whatsappNumber = "0649062690"; 
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-
-            // Open WhatsApp API in new tab
-            window.open(whatsappUrl, '_blank');
-        }
-
-        // Update cart count UI on load
-        window.onload = function() {
-            document.getElementById('cart-count').innerText = "1";
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

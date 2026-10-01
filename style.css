@@ -1,0 +1,20 @@
+body {
+    background-color: #f4f4f4;
+    color: #000000;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    border-radius: 0px !important;
+}
+* {
+    border-radius: 0px !important;
+}
+.serif-display {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.04em;
+}
+.hairline-border {
+    border-color: #979797;
+}
+html{scroll-padding-top:60px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
