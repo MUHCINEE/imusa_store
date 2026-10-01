@@ -1,5 +1,5 @@
 // ===== Config =====
-const WHATSAPP_NUMBER = '0649062690';      // format local ou international, normalisé plus bas
+const WHATSAPP_NUMBER = '+212 649062690';      // format local ou international, normalisé plus bas
 const PRODUCT = { name: 'IMUSA Denim Jorts', price: '215 DH' };
 
 const $ = (id) => document.getElementById(id);
